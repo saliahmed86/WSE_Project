@@ -112,8 +112,10 @@ public class Crawler
         //startFromSeedList("Lists_of_rivers");
         //startFromSeedList("Lists_of_mountains");
         //startFromSeedList("Lists_of_universities_and_colleges");
-        crawl("Category:Actor_filmographies", -1, false);
+        //startFromSeedList("Lists_of_universities_and_colleges");
+        //crawl("Category:Actor_filmographies", -1, false);
         //crawl("Category:Actor_filmographies", 0, false);
+        crawl("List_of_sovereign_states", 0);
         
         
     }

@@ -71,18 +71,18 @@ public class Tester2
                 //System.out.println(fname);
                 if(fname.startsWith("List of"))
                 {
-                    if(fname.contains("Pakistan") && fname.contains("rivers"))
+                   // if(fname.contains("Pakistan") && fname.contains("rivers"))
                     //System.out.println(fname);
                         listOfLists.add(fname);
                 }
                 else
-                {
+                {/*
                     if(fname.toLowerCase().contains("sutlej") ||
                         fname.toLowerCase().contains("indus") || 
                         fname.toLowerCase().contains("jhelum") || 
                         fname.toLowerCase().contains("dasht") || 
-                        fname.toLowerCase().contains("chenab")) 
-                        listOfArticles.add(fname);
+                        fname.toLowerCase().contains("chenab")) */
+                    listOfArticles.add(fname);
                 }
                             
             }

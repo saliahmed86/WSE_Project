@@ -125,21 +125,44 @@ public class Indexer
 
 
             //Main one:::
+            
             /*
+            iterate through list of entities
+            For each entity, get properties. If any pair of properties is the same,
+            note that information for the TYPE of that entity.
+            */
+            
             //if(true) return;
-            HashMap<String, HashMap<String, Set<String>>> bigTypePropMap = new HashMap<String, HashMap<String, Set<String>>>();
-                
+            /*
+            //maps type to hashmap (which maps property to other properties)
+            //HashMap<String, HashMap<String, Set<String>>> bigTypePropMap = new HashMap<String, HashMap<String, Set<String>>>();
+            HashMap<String, Set<Pair>> typeSameProperties = new HashMap<String, Set<Pair>> ();
+            //types:
+            for(String type: idToType)
+            {
+                Set<Pair> set = new HashSet<Pair>();
+                typeSameProperties.put(type, set);
+            }
+                    
             int totalKeys = keys.size();
             System.out.println("totalKeys = " + totalKeys);
             int donek = 0;
             //for each entity in the index, look at posting list and see which properties are shared
             for(String entity: keys)
             {
+                //Maps one property to set of similar ones
                 HashMap<String, Set<String>> map11 = new HashMap<String, Set<String>>();
                 Vector<ER> ll = index.get(entity);
                 
                 if(ll != null)
                     PropertyCombiner.combine(entity, ll, map11, idToEntity);
+                
+                //look at props:
+                for(Map.Entry e: map11.entrySet())
+                {
+                    System.out.println("prop = " + e.getKey());
+                    System.out.println("similar props = " + e.getValue());
+                }
                 
                 donek++;
                 if(donek % 1000 == 0)
@@ -246,6 +269,9 @@ public class Indexer
             String article = tokens[4].toLowerCase();
             String association = "";
             
+            if(entity.equals("united states") && property.equals("president"))
+                System.out.println(line);
+            
             if(tokens.length == 6)
                 association = tokens[5].toLowerCase();
 
@@ -266,7 +292,7 @@ public class Indexer
             {
                 //property = property.substring(0, property.indexOf("|")).trim();
             }
-
+            
             String nextEntity = LinkParser.parseLinkBox(value);
 
             entity = LinkParser.parseLinkBox(entity);
@@ -341,19 +367,51 @@ public class Indexer
         property = property.toLowerCase();
         
         if(!index.containsKey(entity))
+        {
+            //System.out.println("index does NOT contain " + entity);
             return new Vector<String>();
-        
+        }
+        //else
+        //    System.out.println("index contains " + entity);
         Vector<ER> postingList = index.get(entity);
         
         Vector<String> results = new Vector<String>();
         for(ER er: postingList)
         {
+            
             if(er.property.contains(property))
             {
+                //System.out.println("property: " + er.property + ",  entity: " + idToEntity.get(er.nextEntity));
                 results.add(idToEntity.get(er.nextEntity));
             }
         }
         return results;
+    }
+    
+    
+    public Set<String> searchEntitiy(String entity)
+    {
+        entity = entity.toLowerCase();
+        
+        if(!index.containsKey(entity))
+        {
+            System.out.println("index does NOT contain " + entity);
+            return null;
+        }
+        //else
+        //    System.out.println("index contains " + entity);
+        Vector<ER> postingList = index.get(entity);
+        Set<String> resultsSet = new HashSet<String>();
+        //Vector<String> results = new Vector<String>();
+        for(ER er: postingList)
+        {
+            String res = er.property + " :|: ";
+            res += idToEntity.get(er.nextEntity);
+            //System.out.println("property: " + er.property + ",  entity: " + idToEntity.get(er.nextEntity));
+            resultsSet.add(res);
+        }
+        return resultsSet;
+        
     }
     
     
@@ -365,9 +423,6 @@ public class Indexer
             return new Vector<String>();
         
         return new Vector<String>( typeToentity.get(type) );
-        
-        
-        
     }
     
     
@@ -634,6 +689,7 @@ public class Indexer
     {
         int nextEntity;
         String property;
+        String prettyNextEntity;
         //String nextEntityType;
         //String article;
 
@@ -647,7 +703,25 @@ public class Indexer
             //this.article = article;
         }
 
+        public ER(int nextEntity, String property, String prettyNextEntity)
+        {
+            this.nextEntity = nextEntity;
+            this.property = property;
+            this.prettyNextEntity = prettyNextEntity;
+        }
         
+        
+
+        
+        
+        
+    }
+    
+    class Pair
+    {
+        String a;
+        String b;
+
         
         
     }

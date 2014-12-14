@@ -18,6 +18,7 @@ import edu.stanford.nlp.trees.TypedDependency;
 import edu.stanford.nlp.util.CoreMap;
 import java.util.Collection;
 import java.util.List;
+import java.util.Properties;
 import java.util.Vector;
 
 /**
@@ -26,29 +27,32 @@ import java.util.Vector;
  */
 public class StanfordManager
 {
-    private static StanfordCoreNLP pipeline = new StanfordCoreNLP();
+    private static StanfordCoreNLP pipeline = getPipeline();// = new StanfordCoreNLP();
     
     private StanfordManager()
     {
+        //return new StanfordCoreNLP(props);
         
     }
     
     public static StanfordCoreNLP getPipeline()
     {
-        /*
-        if(pipeline == null)
-            pipeline = new StanfordCoreNLP();
         
+        if(pipeline == null)
+        {
+            Properties props = new Properties();
+            props.setProperty("annotators", "tokenize, ssplit, pos, parse, lemma");
+     
+            pipeline = new StanfordCoreNLP(props);
+        }
         return pipeline;
-                */
-        return null;
     }
     
     public static Vector<String> getPOSTags(String input)
     {
         Annotation annotation;
         annotation = new Annotation(input);
-        pipeline.annotate(annotation);
+        getPipeline().annotate(annotation);
         
         List<CoreMap> sentences = annotation.get(CoreAnnotations.SentencesAnnotation.class);
         
@@ -76,7 +80,7 @@ public class StanfordManager
     {
         Annotation annotation;
         annotation = new Annotation(plural);
-        pipeline.annotate(annotation);
+        getPipeline().annotate(annotation);
 
         List<CoreMap> sentences = annotation.get(CoreAnnotations.SentencesAnnotation.class);
         
@@ -112,9 +116,13 @@ public class StanfordManager
     {
         String input = "List of cities and counties of Gyeonggi Province by population";
         
+        String x = StanfordManager.getLemma("populous");
+        System.out.println("x = " + x);
+        
+        if(true) return;
         Annotation annotation;
         annotation = new Annotation(input);
-        pipeline.annotate(annotation);
+        getPipeline().annotate(annotation);
         
         List<CoreMap> sentences = annotation.get(CoreAnnotations.SentencesAnnotation.class);
         if(sentences != null && sentences.size() > 0)

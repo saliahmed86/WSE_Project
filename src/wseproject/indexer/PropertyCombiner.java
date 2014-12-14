@@ -28,13 +28,16 @@ public class PropertyCombiner
                 System.out.println("ll is null for entity " + entity);
                 return;
             }
-            for(Indexer.ER er: ll)
+            //for(Indexer.ER er: ll)
+            for(int i=0;i<ll.size();i++)
             {
+                Indexer.ER er = ll.get(i);
                 
-                for(Indexer.ER er2: ll)
+                //for(Indexer.ER er2: ll)
+                for(int j=i+1;j<ll.size();j++)
                 {
-                    if(er.property.trim().equals(er2.property.trim()))
-                        continue;
+                    Indexer.ER er2 = ll.get(j);
+                    
                     if(match(idToEntity.get(er.nextEntity), idToEntity.get(er2.nextEntity)))
                     {
                         //System.out.println("entity = " + entity);

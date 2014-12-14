@@ -151,7 +151,7 @@ public class InfoboxExtractor2 {
         //System.out.println(prop);
         if(prop.equals("name")
                 || prop.matches(".*(module|translit).*") //parameter
-                || prop.matches(".*(symbol|photo|flag|seal|shield|image|logo|display|caption|alt|emblem|seat|footnote|signature).*") //image or sound
+                || prop.matches(".*(symbol|photo|seal|shield|logo|display|caption|alt|emblem|seat|footnote|signature).*") //image or sound
                 || prop.matches(".*(label|map|coordinates|pushpin|coor).*")
                 || prop.matches(".*(ref).*")
                 || prop.matches(".*(blank).*")

@@ -26,6 +26,7 @@ import wseproject.indexer.Indexer;
 public class InfoboxExtractor2 {
     BufferedReader _br;
     BufferedWriter _bw;
+    WikiInfoboxReader reader = new WikiInfoboxReader();
     
     Set<String> boxType = new HashSet<String>();
     Map<String, String> _translator = new HashMap<String, String>();
@@ -63,7 +64,7 @@ public class InfoboxExtractor2 {
         String article;
         int count = 0;
         while((article = _br.readLine()) != null){
-            String infobox = WikiInfoboxReader.getByArticleName(article);
+            String infobox = reader.getByArticleName(article);
             if(infobox.length()==0)
                 continue;
             System.out.println(article);
@@ -81,7 +82,7 @@ public class InfoboxExtractor2 {
         //outputFile.delete();
         //this._bw = new BufferedWriter(new FileWriter(outputFile,true));
 	this._bw = bwNew;
-        String infobox = WikiInfoboxReader.extractInfobox(content);
+        String infobox = reader.extractInfobox(content);
         if(infobox.length()==0){
             return null;
         }
@@ -96,7 +97,7 @@ public class InfoboxExtractor2 {
         //outputFile.delete();
         //this._bw = new BufferedWriter(new FileWriter(outputFile,true));
             
-        String infobox = WikiInfoboxReader.extractInfobox(content);
+        String infobox = reader.extractInfobox(content);
         if(infobox.length()==0){
             return "!!! no infobox extracted";
         }
@@ -137,10 +138,10 @@ public class InfoboxExtractor2 {
         sb.append(source).append("\n");
         try {
             this._bw.write(sb.toString());
-            //System.out.print(": " + sb.toString());
+            System.out.print(": " + sb.toString());
         } catch (NullPointerException e){
             //this._bw is not initialized
-            //System.out.print(": " + sb.toString());
+            System.out.print(": " + sb.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -560,8 +561,9 @@ public class InfoboxExtractor2 {
         //e.start("data/relations/tin_entity_prop_out.txt", "data/ListOfArticlesWithTables");
         e.startBatch("data/relations/tin_entity_prop_out.txt", "data/tinTestList");
         */
-        String source = "United States";
-        String content = WikiInfoboxReader.getByArticleName(source);
+        String source = "China";
+        WikiInfoboxReader r = new WikiInfoboxReader();
+        String content = r.getByArticleName(source);
         System.out.println(content);
         e.processInfobox(source, content);
         

@@ -1,4 +1,4 @@
-package wseproject;
+package wseproject.nlp;
 
 /**
  Porter stemmer in Java. The original paper is in

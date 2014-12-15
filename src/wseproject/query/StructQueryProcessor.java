@@ -45,10 +45,11 @@ public class StructQueryProcessor
         
         this.entity = this.entity.toLowerCase();
         
-        if(this.entity.matches("\\bmovies\\b"))
+        //if(this.entity.matches("\\bmovies\\b"))
+        if(this.props.contains("movies"))
         {
             System.out.println("yes movies");
-            this.entity = this.entity.replaceAll("movies", "films");
+            this.props = this.props.replaceAll("movies", "films");
         }
     }
 

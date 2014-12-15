@@ -63,6 +63,9 @@ public class ImportantTest
             important.add("producer");
             important.add("director");
             important.add("released");
+            important.add("budget");
+            important.add("gross");
+            important.add("released");
             important.add("language");
         }else if(types.contains("book")){
             important.add("author");

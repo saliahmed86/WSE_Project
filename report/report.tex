@@ -11,11 +11,11 @@
 \lhead{\footnotesize {CSCI 127 - Introduction to Computer Science (Section 6)} }
 \rhead{\footnotesize {Extra Credit Homework 7} }
 
-\textheight 9.0 in 
+\textheight 9.3 in 
 \textwidth 6.5 true in 
 %\hoffset -1.5 true cm
 \fancyheadoffset{0 in}
-\voffset -2.5 true cm
+\voffset -2.8 true cm
 \newcommand{\myfancy}[1]{\mathop{\mathcal{#1}}}
 
 \begin{document}
@@ -58,11 +58,11 @@
 
 
 \section{Motivation \& Related Works}
-We have gone through all fundamental infrastructures of web search engine during the whole semester so far, now we are trying to get the useful information from the raw data and well organized them to be queried and utilized by the users. We want to structurally learn knowledge from the web context. As search engines become more advanced, they now tend to present a relevant and \emph{specific} peice of information to the users without users having to click on certain links. While this is achieved through knowledge graphs, it is not the only use of knowledge graph. Knowledge graphs may be used to find related documents on the basis of underlying themes instead of simply the frequencies, and even to explore relationships which no one believes exist.\\
+We have gone through all fundamental infrastructures of web search engine during the whole semester so far, now we are trying to get the useful information from the raw data and well organized them to be queried and utilized by the users. We want to structurally learn knowledge from the web context. As search engines become more advanced, they now tend to present a relevant and \emph{specific} piece of information to the users without users having to click on certain links. While this is achieved through knowledge graphs, it is not the only use of knowledge graph. Knowledge graphs may be used to find related documents on the basis of underlying themes instead of simply the frequencies, and even to explore relationships which no one believes exist.\\
 
 In this exploratory project, we have attempted to create knowledge graph using the (semi-)structured information present in Wikipedia. As of the writing of this report, we had extracted ~827K entities and ~2M relationships from 70K articles. With millions of tables, lists and info-boxes, Wikipedia is the largest organized ``database'' of information. We have attempted to explore a small part of this corpus and extract relationships and properties from it. Moreover, our focus has been on extracting most information without human supervision, especially in the form of predefined ontologies and relationships. This of course leads to noise and many errors, but in the long run offers very few restrictions.\\
 
-Our primary motivator for a free text extractor without predefined ontologies and relationships was TextRunner, though this is certainly not the only knowledge extraction system available. KnowItAll, a forerunner to TextRunner, adopted a pure text based extraction approach but was limited in the type of information it could extract. What interested us the most was TextRunner's storage mechanism - it does not use any organized tables to store the extracted entities and relationships; instead it has a simple indexing system, quite unlike a databse of carefully related tables, that stores enitity-relationship-entity triples. The relationships are raw text, which means that an actual single relationship may take several forms in the index.\\
+Our primary motivator for a free text extractor without predefined ontologies and relationships was TextRunner, though this is certainly not the only knowledge extraction system available. KnowItAll, a forerunner to TextRunner, adopted a pure text based extraction approach but was limited in the type of information it could extract. What interested us the most was TextRunner's storage mechanism - it does not use any organized tables to store the extracted entities and relationships; instead it has a simple indexing system, quite unlike a database of carefully related tables, that stores entity-relationship-entity triples. The relationships are raw text, which means that an actual single relationship may take several forms in the index.\\
 
 While focusing on pure text for information extraction, TextRunner and similar extraction do not exploit the wealth of information packed in semi-structured forms such as tables and lists. For example, to extract the awards that someone has won is much easier to do if one parses a list under such a heading, rather than look for instances in a text corpus. TextRunner overcomes this by parsing billions of documents, but perhaps such an approach is not necessary. This is what we will try to answer in this project report.
 
@@ -80,7 +80,7 @@ One feature that we would have liked to have in this project is the ability for 
 %\subsection{Crawling Wikipedia}
 {\bf Crawling Wikipedia}\\
 
-Initially, we downloaded the entire Wikipedia corpus, which unpacked to a single XML file. We used some utitlites to parse the file and extract documents in Wikipedia Markup Language (Wikimarkup). However, the extracted content was not of very high quality, in that several new line characters and sometimes even parts of text were missing. Since such characters are critical to correctly parse infoboxes, tables and lists, we instead retrieved documents in Wikimarkup using the Mediawiki API. To extract information in these structures, we wrote the parsers ourselves.\\
+Initially, we downloaded the entire Wikipedia corpus, which unpacked to a single XML file. We used some utilities to parse the file and extract documents in Wikipedia Markup Language (Wikimarkup). However, the extracted content was not of very high quality, in that several new line characters and sometimes even parts of text were missing. Since such characters are critical to correctly parse infoboxes, tables and lists, we instead retrieved documents in Wikimarkup using the Mediawiki API. To extract information in these structures, we wrote the parsers ourselves.\\
 
 {\bf Language processing}\\
 
@@ -139,7 +139,7 @@ Reverse relations give us  precious information, so we have to utilize them care
 
 
 \item
-The inverted index follows the same idea as that of a search engine, except that each entry in the posting is a relationship-entity pair, thereby making each posting list a set of triples (in a way similar to that of TextRunner). The algorithm performs a full scan of hte posting list when searching for properties of an entity.\\
+The inverted index follows the same idea as that of a search engine, except that each entry in the posting is a relationship-entity pair, thereby making each posting list a set of triples (in a way similar to that of TextRunner). The algorithm performs a full scan of the posting list when searching for properties of an entity.\\
 \end{enumerate}
 
 
@@ -147,10 +147,11 @@ The inverted index follows the same idea as that of a search engine, except that
 
 \begin{itemize}
 \item 
-To allow better user experience, we applied loose matching when we are handling the query. That is, a query ``population'' will get not only ``population'' but also ``population density'' as the result, which lower the precision. Also we will have to do is applying strict matching. But in this case, we have to make sure we are doing good stemming, synonym handling and other query/index normalizing stuff.
+To allow better user experience, we applied loose matching when we are handling the query. That is, a query ``population'' will get not only ``population'' but also ``population density'' as the result, which lower the precision. Also we will have to do is applying strict matching. But in this case, we have to make sure we are doing good stemming, synonym handling and other query/index normalizing stuff. This problem needs to be solved with a machine learning approach, where we learn the usage of properties given the context.
 
 \item 
 The indexing structure can be significantly improved. If a user wants to find property $P$ of some entity, then a complete scan of the posting list is unnecessary and slow. Instead, a tree like structure should be adopted that makes it easier to reach a property. A tree-like structure as opposed to simply clustering the properties has the advantage that properties can be made into a hierarchy.
+
 
 \end{itemize}
 
@@ -164,12 +165,14 @@ Compile all .java files
 \item 
 Execute wseproject.server.KGServer
 \item 
-Structured query: \url {http://localhost:25816?entity=karachi\&property=population}
-\item 
-To some degree, unstructured query: \url {http://localhost:25816?query=capital+of+venezuela}
-\item 
-Our engine supports union and intersection. You can achieve those by putting "or" and "and" in the query. For example, "movies of Matt Damon and Brad Pitt" will give you a list of movie stared by both of them.
+Open a browser of your choice and then access the system via \url{http://localhost:25816/knowledge}
+\item
+Input the query for fields (either just the entity or the entity and property/collection). 
+\item If you only do the entity query, you will be able to drop down the content of a certain property by clicking on the property and hide it back by clicking again.
+\item Our engine supports union and intersec- tion. You can achieve those by putting ``or'' and ``and'' in the query. For example, ``films of Matt Damon and Brad Pitt'' will give you a list of movie stared by both of them
+
 \end{enumerate}
+
 
 
 \section{Evaluation}
@@ -178,20 +181,58 @@ Our engine supports union and intersection. You can achieve those by putting "or
 
 {\bf Accuracy}
 
-We were interested in the accuracy of our knowledge graph. To evaluate the accuracy, we must compare it to some ground truth. Since there is no computer-processable ground truth of suitable extent, we had to rely on manual evaluation. We issued hundreds of queries and find the ground truth by hand manually. Then compare with our results to compute the accuracy. We define five categories, {person, movie, country, university, river}, with several properties attached to each category. For each category, we generate a sample queries and do the experiment. The table below shows the accuracy.
+We were interested in the accuracy of our knowledge graph. To evaluate the accuracy, we must compare it to some ground truth. Since there is no computer-processable ground truth of suitable extent, we had to rely on manual evaluation. We issued hundreds of queries and find the ground truth manually. Then compare with our results to compute the accuracy. We define five categories, {person, movie, country, university, river}, with several properties attached to each category. For each category, we generate a sample queries and do the experiment. Table 1 shows the accuracy.\\
 
-\begin{
-\begin{figure}
+In Table 2, we compare the size of our index to those created by other systems. Our index is several orders of magnitude more than the others. We believe that this is because these systems had wither hand-curated relationships or were very restrictive (like KnowItAll). Our indexer, on the other hand, extracts all sorts of properties, but contains a lot of noise.
 
-\end{figure}
+\section{Conclusion} 
+Our results show a fair degree of accuracy. However, we cannot just yet claim that the approach of simply using semi-structured data from a very small corpus such as ours is advantageous. Ee have determined some approaches that can be used to parse relationships more accurately, and may take this on as a project later. \\
+
+\section{Contribution}
 
 
+\emph{Syed Ali Ahmed}: List and Table Parsing, Crawling, Indexing, Server Interface, Query Processing, Project Report
+
+\emph{Yen-Tin Liu}: Infobox Parsing, Crawling, Project Report 
+
+\emph{Hao Xu}: Evaluation, Consulting, Classification, Project Report
 
 
-"	Group Member and Contribution
-Syed Ali Ahmed: List Parsing, Indexing, and Server Interface
-Yen-Tin Liu: Infobox Parsing, Project Report 
-Hao Xu: Evaluation, Consulting
+\begin{center}
+
+\begin{table}[b]
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Category} & \textbf{Property}                                                                                          & \textbf{\begin{tabular}[c]{@{}l@{}}Sample\\    size\end{tabular}} & \textbf{Acc.} \\ \hline
+Country           & \begin{tabular}[c]{@{}l@{}}\{capital,\\   currency, \\ president, \\ population, \\ demonym\}\end{tabular} & 100                                                               & 76.00\%           \\ \hline
+Scientist         & \begin{tabular}[c]{@{}l@{}}\{birth,\\   field, \\ nationality\}\end{tabular}                               & 210                                                               & 70.48\%           \\ \hline
+Movie             & \begin{tabular}[c]{@{}l@{}}\{director,\\   producer, \\ release date\}\end{tabular}                        & 150                                                               & 58.67\%           \\ \hline
+University        & \begin{tabular}[c]{@{}l@{}}\{established,\\   president, \\ motto\}\end{tabular}                           & 94                                                                & 48.97\%           \\ \hline
+River             & \{length\}                                                                                                 & 93                                                                & 11.83\%           \\ \hline
+\end{tabular}
+\caption{Accuracy of Knowledge Graph}
+\end{table}
+
+\end{center}
+
+
+\begin{center}
+\begin{table}[b]
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Name} & \textbf{Entities} & \textbf{Properties/Relations} \\ \hline
+Group 16 KB & 827,000             & 2,000,000                    \\ \hline
+KnowItAll     & N/A               & 29,835                        \\ \hline
+SUMO          & 20,000            & 60,000                        \\ \hline
+WordNet       & 117,597           & 207,016                       \\ \hline
+OpenCyc       & 47,000            & 306,000                       \\ \hline
+\end{tabular}
+
+\caption{Table 2 shows the number of entities and properties learnt in our knowledge graph. For comparison purpose, we also list the number of the most popular knowledge graph.}
+\end{table}
+\end{center}
+
+
 
 
 

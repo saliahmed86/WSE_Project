@@ -13,7 +13,8 @@ public class QueryReturnObj
 {
     int type;
     Object obj;
-
+    String imagePath;
+    
     public QueryReturnObj(int type, Object obj)
     {
         this.type = type;

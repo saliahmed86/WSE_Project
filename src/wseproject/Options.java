@@ -11,6 +11,6 @@ package wseproject;
  */
 public class Options
 {
-    //public static String cachePath = "data/corpus_cache";
-    public static String cachePath = "data/temp_corpus";
+    public static String cachePath = "data/corpus_cache";
+    //public static String cachePath = "data/temp_corpus";
 }

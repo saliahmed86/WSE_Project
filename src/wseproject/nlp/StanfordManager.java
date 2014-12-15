@@ -116,7 +116,7 @@ public class StanfordManager
     {
         String input = "List of cities and counties of Gyeonggi Province by population";
         
-        String x = StanfordManager.getLemma("populous");
+        String x = StanfordManager.getLemma("released");
         System.out.println("x = " + x);
         
         if(true) return;

@@ -40,12 +40,12 @@ public class Tester2
             //BufferedWriter bigWriter = new BufferedWriter(new FileWriter(new File("data/relations/companies-srclist_entity_prop_out.txt")));
             //BufferedWriter bigWriter = new BufferedWriter(new FileWriter(new File("data/relations/data-srclist_entity_prop_out.txt"), true));
             
-            //BufferedWriter bigWriter = new BufferedWriter(new FileWriter(new File("data/relations/data-srclist_entity_prop_out.txt"),true));
-            BufferedWriter bigWriter = new BufferedWriter(new FileWriter(new File("data/relations/test-srclist_entity_prop_out.txt"),true));
+            BufferedWriter bigWriter = new BufferedWriter(new FileWriter(new File("data/relations/data-srclist_entity_prop_out.txt")));
+            //BufferedWriter bigWriter = new BufferedWriter(new FileWriter(new File("data/relations/test-srclist_entity_prop_out.txt"),true));
             
             
-            //BufferedWriter monotonicColWriter = new BufferedWriter(new FileWriter(new File("data/monotonicCols-data"),true));
-            BufferedWriter monotonicColWriter = new BufferedWriter(new FileWriter(new File("data/monotonicCols-temp"),true));
+            BufferedWriter monotonicColWriter = new BufferedWriter(new FileWriter(new File("data/monotonicCols-data")));
+            //BufferedWriter monotonicColWriter = new BufferedWriter(new FileWriter(new File("data/monotonicCols-temp")));
 
             //BufferedReader br = new BufferedReader(new FileReader(new File("F:\\cs2580\\Project\\small_list.txt")));
             //BufferedReader br = new BufferedReader(new FileReader(new File("F:\\cs2580\\Project\\WSEProject\\data\\srclist.txt")));
@@ -63,8 +63,8 @@ public class Tester2
                 listOfLists.add(line);
             }
             */
-            //File dir = new File("data/corpus_cache/");
-            File dir = new File("data/temp_corpus/");
+            File dir = new File("data/corpus_cache/");
+            //File dir = new File("data/temp_corpus/");
             File files[] = dir.listFiles();
             
             System.out.println("dd");

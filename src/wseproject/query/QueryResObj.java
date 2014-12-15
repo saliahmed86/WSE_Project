@@ -18,6 +18,7 @@ public class QueryResObj
     int important;
     
     
+    
     /*
     Vector<String> keys;
     Vector<Vector<String>> vals;

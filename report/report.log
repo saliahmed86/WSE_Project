@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2012.11.23)  15 DEC 2014 03:21
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2012.11.23)  15 DEC 2014 05:38
 entering extended mode
 **report.tex
 (F:\cs2580\repo\new_repo\WSE_Project\report\report.tex
@@ -15,8 +15,8 @@ sgerman, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, u
 senglishmax, welsh, loaded.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\size12.clo"
-File: size12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\size11.clo"
+File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
 \c@section=\count80
@@ -320,8 +320,8 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 58.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
-Underfull \hbox (badness 1484) in paragraph at lines 61--62
-\OT1/cmr/m/n/12 We have gone through all fun-da-men-tal
+Underfull \hbox (badness 10000) in paragraph at lines 60--60
+[]\OT1/cmr/bx/n/14.4 Motivation & Re-lated
  []
 
 
@@ -330,28 +330,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 61--62
  []
 
 
-Underfull \hbox (badness 5592) in paragraph at lines 63--64
-[]\OT1/cmr/m/n/12 In this ex-ploratory project, we have
- []
-
-
-Underfull \hbox (badness 6542) in paragraph at lines 63--64
-\OT1/cmr/m/n/12 at-tempted to cre-ate knowl-edge graph
- []
-
-
-Underfull \hbox (badness 3919) in paragraph at lines 63--64
-\OT1/cmr/m/n/12 us-ing the (semi-)structured in-for-ma-tion
- []
-
-
-Underfull \hbox (badness 1275) in paragraph at lines 63--64
-\OT1/cmr/m/n/12 ar-ti-cles. With mil-lions of ta-bles, lists
- []
-
-
-Underfull \hbox (badness 7740) in paragraph at lines 63--64
-\OT1/cmr/m/n/12 with-out hu-man su-per-vi-sion, es-pe-cially
+Underfull \hbox (badness 1189) in paragraph at lines 63--64
+\OT1/cmr/m/n/10.95 As of the writ-ing of this re-port, we had
  []
 
 
@@ -360,26 +340,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 63--64
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 4096) has occurred while \output is active []
 
 
-Underfull \hbox (badness 1655) in paragraph at lines 65--66
-[]\OT1/cmr/m/n/12 Our pri-mary mo-ti-va-tor for a free text
+Underfull \hbox (badness 2134) in paragraph at lines 65--66
+\OT1/cmr/m/n/10.95 was Tex-tRun-ner's stor-age mech-a-nism - it
  []
 
 
-Underfull \hbox (badness 5050) in paragraph at lines 65--66
-\OT1/cmr/m/n/12 ex-trac-tor with-out pre-de-fined on-tolo-gies
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 65--66
-\OT1/cmr/m/n/12 stores enitity-relationship-entity triples.
- []
-
-
-Underfull \hbox (badness 2772) in paragraph at lines 65--66
-\OT1/cmr/m/n/12 The re-la-tion-ships are raw text, which
+Underfull \hbox (badness 1168) in paragraph at lines 65--66
+\OT1/cmr/m/n/10.95 a databse of care-fully re-lated ta-bles, that
  []
 
 
@@ -387,22 +357,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 65--66
 
  []
 
-[1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
 
-
-]
-Underfull \hbox (badness 2302) in paragraph at lines 72--73
-\OT1/cmr/m/n/12 this would have a com-pletely sep-a-rate
- []
-
-
-Underfull \hbox (badness 1377) in paragraph at lines 72--73
-\OT1/cmr/m/n/12 ap-proach from ta-ble/list pars-ing. The
- []
-
-
-Underfull \hbox (badness 4036) in paragraph at lines 72--73
-\OT1/cmr/m/n/12 where we in-dex (entity-property-entity)
+Underfull \hbox (badness 1281) in paragraph at lines 72--73
+\OT1/cmr/m/n/10.95 have a com-pletely sep-a-rate ap-proach from
  []
 
 
@@ -411,100 +368,169 @@ Underfull \hbox (badness 10000) in paragraph at lines 72--73
  []
 
 
-Underfull \hbox (badness 3229) in paragraph at lines 82--90
-\OT1/cmr/m/n/12 In-dexer: In-dexer.java and some other
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
+
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 75--76
+
  []
 
 
-Overfull \hbox (24.09969pt too wide) in paragraph at lines 82--90
-\OT1/cmr/m/n/12 (http://nlp.stanford.edu/software/corenlp.shtml
+Underfull \hbox (badness 10000) in paragraph at lines 77--78
+
  []
 
 
-Overfull \hbox (11.88454pt too wide) in paragraph at lines 82--90
-\OT1/cmr/m/n/12 (https://www.mediawiki.org/wiki/MediaWiki
+Underfull \hbox (badness 10000) in paragraph at lines 81--82
+
  []
 
 
-Underfull \hbox (badness 1796) in paragraph at lines 91--97
-[]\OT1/cmr/m/n/12 " Im-ple-men-ta-tion 1. For the pars-ing
+Underfull \hbox (badness 1460) in paragraph at lines 83--84
+\OT1/cmr/m/n/10.95 cor-pus, which un-packed to a sin-gle XML
  []
 
 
-Underfull \hbox (badness 1546) in paragraph at lines 91--97
-\OT1/cmr/m/n/12 Un-for-tu-nately, be-cause of the rel-a-tively
+Underfull \hbox (badness 3746) in paragraph at lines 83--84
+\OT1/cmr/m/n/10.95 file and ex-tract doc-u-ments in Wikipedia
  []
 
 
-Underfull \hbox (badness 1472) in paragraph at lines 91--97
-\OT1/cmr/m/n/12 small size of our sam-ples, we couldn't
+Underfull \hbox (badness 2591) in paragraph at lines 83--84
+\OT1/cmr/m/n/10.95 re-trieved doc-u-ments in Wiki-markup us-ing
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 91--97
-\OT1/cmr/m/n/12 >officeholder(type)->spouse(property)->
+Underfull \hbox (badness 1688) in paragraph at lines 83--84
+\OT1/cmr/m/n/10.95 in these struc-tures, we wrote the parsers
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 91--97
-\OT1/cmr/m/n/12 -> spouse(type)->officeholder(property)->
+Underfull \hbox (badness 10000) in paragraph at lines 83--84
+
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 91--97
-\OT1/cmr/m/n/12 tura (entity)->volcano (type)->country
+Underfull \hbox (badness 10000) in paragraph at lines 85--86
+
+ []
+
+
+Underfull \hbox (badness 1509) in paragraph at lines 87--88
+\OT1/cmr/m/n/10.95 to de-ter-mine how it should be pro-cessed,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 87--88
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 89--90
+
+ []
+
+
+Underfull \hbox (badness 1178) in paragraph at lines 93--94
+\OT1/cmr/m/n/10.95 of the seed), \OT1/cmr/m/it/10.95 Parser and Ex-trac-tor \OT
+1/cmr/m/n/10.95 (parse
+ []
+
+
+Underfull \hbox (badness 1496) in paragraph at lines 130--131
+[]\OT1/cmr/m/n/10.95 The crawler re-trieves Wikipedia doc-u-
  []
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 98--104
-[]\OT1/cmr/m/n/12 " Us-age 1. Com-pile all .java
+Underfull \hbox (badness 1490) in paragraph at lines 135--136
+\OT1/cmr/m/n/10.95 )structured data, re-quires very care-ful
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 98--104
-\OT1/cmr/m/n/12 files 2. Ex-e-cute wse-pro-
+Underfull \hbox (badness 1810) in paragraph at lines 135--136
+\OT1/cmr/m/n/10.95 anal-y-sis of the Wiki-markup gram-mar.
  []
 
 
-Overfull \hbox (89.87268pt too wide) in paragraph at lines 98--104
-[]$\OT1/cmtt/m/n/12 h$[]\OT1/cmr/m/n/12 ttp://localhost:25816?entity=karachi&pr
-operty=population
+Underfull \hbox (badness 1052) in paragraph at lines 135--136
+\OT1/cmr/m/n/10.95 tem-plates and nest-ing ren-ders the use
  []
 
 
-Overfull \hbox (46.16335pt too wide) in paragraph at lines 98--104
-\OT1/cmr/m/n/12 http://localhost:25816?query=capital+of+venezuela
+Underfull \hbox (badness 1484) in paragraph at lines 135--136
+\OT1/cmr/m/n/10.95 of reg-u-lar ex-pres-sions in-suf-fi-cient, and
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 116.
-[3
 
-]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 116.
+Underfull \hbox (badness 10000) in paragraph at lines 135--136
+
+ []
+
+
+Underfull \hbox (badness 1354) in paragraph at lines 146--152
+\OT1/cmr/m/n/10.95 cute wse-pro-ject.server.KGServer 3. Struc-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 146--152
+\OT1/cmr/m/n/10.95 tured query: []$\OT1/cmtt/m/n/10.95 http : / / localhost : 2
+5816 ?
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 146--152
+\OT1/cmtt/m/n/10.95 entity = karachi&property = population$[]
+ []
+
+
+Underfull \hbox (badness 1748) in paragraph at lines 146--152
+\OT1/cmr/m/n/10.95 4. To some de-gree, un-struc-tured query:
+ []
+
+
+Overfull \hbox (27.83694pt too wide) in paragraph at lines 146--152
+\OT1/cmr/m/n/10.95 http://localhost:25816?query=capital+of+venezuela
+ []
+
+Missing character: There is no “ in font cmr10!
+Missing character: There is no ” in font cmr10!
+Missing character: There is no “ in font cmr10!
+Missing character: There is no ” in font cmr10!
+Missing character: There is no “ in font cmr10!
+Missing character: There is no ” in font cmr10!
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 170.
+[3]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 170.
  (F:\cs2580\repo\new_repo\WSE_Project\report\report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 116.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 116.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 170.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 170.
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: F55DF1D840167630CE5D8A403FE8E13A;125.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 116.
+(rerunfilecheck)             Checksum: 2347B5D8A1D5FD8F07AC7C71F4209EB1;175.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 170.
  ) 
 Here is how much of TeX's memory you used:
- 5949 strings out of 494045
- 84082 string characters out of 3148392
- 172085 words of memory out of 3000000
- 9189 multiletter control sequences out of 15000+200000
- 12305 words of font info for 48 fonts, out of 3000000 for 9000
+ 5953 strings out of 494045
+ 84111 string characters out of 3148392
+ 172081 words of memory out of 3000000
+ 9187 multiletter control sequences out of 15000+200000
+ 11858 words of font info for 45 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
- 29i,10n,43p,1006b,318s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Fil
-es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX
- 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/font
-s/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
-public/amsfonts/cm/cmtt12.pfb>
-Output written on report.pdf (3 pages, 86882 bytes).
+ 29i,10n,43p,1024b,399s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
+les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
+msfonts/cm/cmr9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
+/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.
+pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on report.pdf (3 pages, 146800 bytes).
 PDF statistics:
- 53 PDF objects out of 1000 (max. 8388607)
- 6 named destinations out of 1000 (max. 500000)
- 17 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 79 PDF objects out of 1000 (max. 8388607)
+ 10 named destinations out of 1000 (max. 500000)
+ 25 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -125,14 +125,15 @@ public class StructQueryProcessor
         {
             StringBuilder sb = new StringBuilder();
             
-            System.out.println("here 1");
+            //System.out.println("here 1");
             resultSet = indexer.searchEntitiy(entity);
-            System.out.println("here 2");
+            //System.out.println("here 2");
             HashMap<String, Vector<String>> map = new HashMap<String, Vector<String>> ();
             Vector<String> keyVec = new Vector<String>();
-            System.out.println("here 3");
+            //System.out.println("here 3");
             
             
+            String imgPath = indexer.getImagePath(entity);
             
             for(String s: resultSet)
             {
@@ -147,7 +148,7 @@ public class StructQueryProcessor
                     map.put(ss[0], new Vector<String>());
                     keyVec.add(ss[0]);
                 }
-                System.out.println("here 5");
+                //System.out.println("here 5");
                 map.get(ss[0]).add(ss[1]);
             }
             
@@ -186,6 +187,16 @@ public class StructQueryProcessor
             }
             
             QueryReturnObj o = new QueryReturnObj(2, queryRes);
+            if(!imgPath.equals(""))
+            {
+                o.imagePath = imgPath;
+                System.out.println("pakistan has image");
+            }
+            else
+            {
+                System.out.println("pakistan has no image");
+            }
+
             Gson gson = new Gson();
             String json = gson.toJson(o);
             //Now show important ones. which are those? maybe thos with less number of entities

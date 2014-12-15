@@ -103,6 +103,8 @@ public class Indexer
                     //if(i%10000 == 0)
                     //    System.out.println("read " + i + " lines");
                 }
+                
+                System.out.println("Total entities: " + idToEntity.size());
             }
             catch(Exception e)
             {
@@ -251,6 +253,9 @@ public class Indexer
     public void handleRelation(String line)
     {
         //System.out.println(line);
+        
+        if(line.toLowerCase().contains("china") && line.toLowerCase().contains("gdp"))
+            System.out.println(line);
         try
         {
             String tokens[] = line.split(ESCAPED_DELIM);
@@ -272,37 +277,41 @@ public class Indexer
 
             
             
-            if(property.equals("image") || property.equals("image_name") )
+            if(property.equals("image") || property.equals("image_name") || property.equals("image_flag"))
             {
-                System.out.println("img entity = " + entity);
+                //System.out.println("img entity = " + entity);
                 //get image via hash
-                String image = tokens[3].replaceAll("\\s", "_");
+                String image = LinkParser.parseLinkBox(tokens[3]).replaceAll("\\s", "_").replaceAll("File\\:", "");
+                if(image.toLowerCase().endsWith(".jpg") || image.toLowerCase().endsWith(".png") || image.toLowerCase().endsWith(".gif") || image.toLowerCase().endsWith(".svg") || image.toLowerCase().endsWith(".tiff"))
+                {
                 
-                byte[] bytesOfMessage = image.getBytes("UTF-8");
+                    byte[] bytesOfMessage = image.getBytes("UTF-8");
 
-                MessageDigest md = MessageDigest.getInstance("MD5");
-                md.reset();
-                md.update(image.getBytes());
-                byte[] digest = md.digest();
-                BigInteger bigInt = new BigInteger(1,digest);
-                String hashtext = bigInt.toString(16);
-                // Now we need to zero pad it if you actually want the full 32 chars.
-                while(hashtext.length() < 32 ){
-                  hashtext = "0"+hashtext;
+                    MessageDigest md = MessageDigest.getInstance("MD5");
+                    md.reset();
+                    md.update(image.getBytes());
+                    byte[] digest = md.digest();
+                    BigInteger bigInt = new BigInteger(1,digest);
+                    String hashtext = bigInt.toString(16);
+                    // Now we need to zero pad it if you actually want the full 32 chars.
+                    while(hashtext.length() < 32 ){
+                      hashtext = "0"+hashtext;
+                    }
+                    //System.out.println("filename = " + image + "   ,   md5 = " + hashtext);
+
+                    String hashpath = hashtext.substring(0,1) + "/" + hashtext.substring(0,2) + "/";
+                    String path = "http://upload.wikimedia.org/wikipedia/commons/thumb/" + hashpath + image + "/200px-" + image;
+                    
+                    if(path.toLowerCase().endsWith(".svg"))
+                        path = path + ".png";
+                        
+                    imageMap.put(entity, path);
                 }
-                //System.out.println("filename = " + image + "   ,   md5 = " + hashtext);
-                
-                String hashpath = hashtext.substring(0,1) + "/" + hashtext.substring(0,2) + "/";
-                String path = "http://upload.wikimedia.org/wikipedia/commons/thumb/" + hashpath + image + "/200px-" + image;
-                              
-                imageMap.put(entity, path);
             }
             
             
             property = LinkParser.parseLinkBox(property);
             
-            if(entity.equals("united states") && property.equals("president"))
-                System.out.println(line);
             
             if(tokens.length == 6)
                 association = tokens[5].toLowerCase();
@@ -311,10 +320,14 @@ public class Indexer
             if(entity == null || entity.trim().equals("") || entity.length() >= 50 || entity.length() < 3)
                 return;
             
+            
             //if(type == null || type.trim().equals("") || type.length() >= 50 || type.length() < 3)
             //    return;
             
             if(property != null && property.length() >= 50)
+                return;
+            
+            if(entity.contains(":template:") || property.contains(":template:"))
                 return;
             
             if(value != null && value.length() >= 50)
@@ -327,6 +340,8 @@ public class Indexer
             
             String nextEntity = LinkParser.parseLinkBox(value);
 
+            //entity = entity.replaceAll("^[A-z0-9]", " ");
+            entity = entity.replaceAll("\\}\\}", " ").trim();
             entity = LinkParser.parseLinkBox(entity);
 //System.out.println("ok");            
             //if(entity.toLowerCase().contains("pakistan"))// && property.toLowerCase().equals("river"))

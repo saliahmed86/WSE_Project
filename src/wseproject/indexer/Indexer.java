@@ -454,7 +454,7 @@ public class Indexer
         {
             String res = er.property + " :|: ";
             res += idToEntity.get(er.nextEntity);
-            System.out.println("property: " + er.property + ",  entity: " + idToEntity.get(er.nextEntity));
+            //System.out.println("property: " + er.property + ",  entity: " + idToEntity.get(er.nextEntity));
             resultsSet.add(res);
         }
         return resultsSet;

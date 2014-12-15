@@ -42,6 +42,14 @@ public class StructQueryProcessor
         {
             this.props = StanfordManager.getLemma(this.props);
         }
+        
+        this.entity = this.entity.toLowerCase();
+        
+        if(this.entity.matches("\\bmovies\\b"))
+        {
+            System.out.println("yes movies");
+            this.entity = this.entity.replaceAll("movies", "films");
+        }
     }
 
     public String process()
@@ -133,7 +141,7 @@ public class StructQueryProcessor
             //System.out.println("here 3");
             
             
-            String imgPath = indexer.getImagePath(entity);
+            String imgPath = indexer.getImagePath(entity.toLowerCase());
             
             for(String s: resultSet)
             {
@@ -190,7 +198,7 @@ public class StructQueryProcessor
             if(!imgPath.equals(""))
             {
                 o.imagePath = imgPath;
-                System.out.println("pakistan has image");
+                //System.out.println("pakistan has image");
             }
             else
             {

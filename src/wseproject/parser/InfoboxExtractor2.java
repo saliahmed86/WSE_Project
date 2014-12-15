@@ -67,15 +67,15 @@ public class InfoboxExtractor2 {
             String infobox = reader.getByArticleName(article);
             if(infobox.length()==0)
                 continue;
-            System.out.println(article);
-            System.out.println(infobox);
+            //System.out.println(article);
+            //System.out.println(infobox);
             processInfobox(article, infobox);
             count++;
         }
         this._bw.close();
         this._br.close();
         this.output();
-        System.out.println("DONE "+count);
+        //System.out.println("DONE "+count);
     }    
     public String startAFile(BufferedWriter bwNew, String articleName, String content) throws IOException{
         //File outputFile = new File(outputPath);
@@ -138,10 +138,10 @@ public class InfoboxExtractor2 {
         sb.append(source).append("\n");
         try {
             this._bw.write(sb.toString());
-            System.out.print(": " + sb.toString());
+            //System.out.print(": " + sb.toString());
         } catch (NullPointerException e){
             //this._bw is not initialized
-            System.out.print(": " + sb.toString());
+            //System.out.print(": " + sb.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }

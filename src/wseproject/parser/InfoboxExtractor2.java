@@ -291,6 +291,19 @@ public class InfoboxExtractor2 {
     }
     private void processSettlement(String prop, String content, Info info){
         //System.out.println("prop: "+prop);
+        if(prop.contains("leader_title")){
+            this._dependentRelation.put(prop, content);
+            info.prop = null;
+        }
+        if(prop.contains("leader_name")){
+            char num = prop.charAt(11);
+            String key = "leader_title" + num;
+            prop = this._dependentRelation.get(key);
+            this._dependentRelation.remove(key);
+            info.prop = prop;
+            info.content = content;
+            info.reverseType = prop;
+        }
         if(prop.contains("subdivision_type")){
             this._dependentRelation.put(prop, content);
             info.prop = null;
@@ -299,10 +312,12 @@ public class InfoboxExtractor2 {
             if(prop.equals("subdivision_name")){
                 //if(this._dependentRelation.containsKey("subdivision_type"))
                     prop = this._dependentRelation.get("subdivision_type");
+                    this._dependentRelation.remove("subdivision_type");
             }else{
                 String key = "subdivision_type" + prop.charAt(16);
                 //if(this._dependentRelation.containsKey(key))
                     prop = this._dependentRelation.get(key);
+                    this._dependentRelation.remove(key);
             }
             info.prop = prop;
             info.content = content;
@@ -316,9 +331,11 @@ public class InfoboxExtractor2 {
         if(prop.contains("established_date")){
             if(prop.equals("established_date")){
                 prop = this._dependentRelation.get("established_title");
+                this._dependentRelation.remove("established_title");
             }else{
                 String key = "established_title" + prop.charAt(16);
                 prop = this._dependentRelation.get(key);
+                this._dependentRelation.remove(key);
             }
             info.prop = prop;
             info.content = content;
@@ -335,6 +352,7 @@ public class InfoboxExtractor2 {
             String key = "demographics" + num1 + "_title" + num2;
             if(this._dependentRelation.containsKey(key)){
                 prop = this._dependentRelation.get(key);
+                this._dependentRelation.remove(key);
                 info.prop = prop;
                 info.content = content;
                 info.reverseType = prop;
@@ -351,6 +369,7 @@ public class InfoboxExtractor2 {
             char num = prop.charAt(11);
             String key = "leader_title" + num;
             prop = this._dependentRelation.get(key);
+            this._dependentRelation.remove(key);
             info.prop = prop;
             info.content = content;
             info.reverseType = prop;
@@ -363,13 +382,13 @@ public class InfoboxExtractor2 {
             String num = prop.substring(16);
             String key = "established_event" + num;
             prop = this._dependentRelation.get(key);
+            this._dependentRelation.remove(key);
             info.prop = prop;
             info.content = content;
             info.reverseType = prop;
         }
         return;
     }
-    
     public void unitProcess(Info info){
         if(info.prop.contains("_sq_mi")){
             info.prop = info.prop.substring(0,info.prop.indexOf("_sq_mi"));
@@ -561,7 +580,7 @@ public class InfoboxExtractor2 {
         //e.start("data/relations/tin_entity_prop_out.txt", "data/ListOfArticlesWithTables");
         e.startBatch("data/relations/tin_entity_prop_out.txt", "data/tinTestList");
         */
-        String source = "China";
+        String source = "New York City";
         WikiInfoboxReader r = new WikiInfoboxReader();
         String content = r.getByArticleName(source);
         System.out.println(content);

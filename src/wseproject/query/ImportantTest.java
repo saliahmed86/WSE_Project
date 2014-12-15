@@ -30,31 +30,47 @@ public class ImportantTest
         
         //important = new HashMap<String, Set<String>>();
         
-        Set<String> country = new HashSet<String>();
-        //important.put(entity, country);
-        //country.add("name");
-        country.add("population");
-        country.add("demonym");
-        country.add("independence");
-        country.add("president");
-        country.add("prime minister");
-        country.add("capital");
-        country.add("currency");
         
-        
-        if(types.contains("country"))
-        {
-            important = country;
+        if(types.contains("country")){
+            important.add("name");
+            important.add("population");
+            important.add("demonym");
+            important.add("independence");
+            important.add("president");
+            important.add("prime minister");
+            important.add("capital");
+            important.add("currency");
+        }else if(types.contains("university")){
+            important.add("motto");
+            important.add("president");
+            important.add("student");
+            important.add("established");
+            important.add("location");
+        }else if(types.contains("person")){
+            important.add("birthth");
+            important.add("death");
+            important.add("known_for");
+            important.add("children");
+        }else if(types.contains("mountain")){
+            important.add("elavation");
+            important.add("location");
+        }else if(types.contains("river")){
+            important.add("length");
+            important.add("watershed");
+            important.add("origin");
+            important.add("discharge");
+        }else if(types.contains("film")){
+            important.add("producer");
+            important.add("director");
+            important.add("released");
+            important.add("language");
+        }else if(types.contains("book")){
+            important.add("author");
+            important.add("genre");
+            important.add("publisher");
+            important.add("released");
+            important.add("isbn");
         }
-        else if(types.contains("person") || 
-                types.contains("people") || 
-                types.contains("officeholder") || 
-                types.contains("writer") || 
-                types.contains("scientist")     )
-        {
-            
-        }
-        
         
     }
     

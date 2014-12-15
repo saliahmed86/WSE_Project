@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
 import java.net.URLDecoder;
 import java.util.Vector;
 import java.util.Collections;
@@ -22,6 +23,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
+import java.security.*;
 
 /**
  *
@@ -32,15 +34,14 @@ public class Indexer
     //private HashMap<String, Integer> wordToIndex = new HashMap<String, Integer>();
     //private HashMap<Integer, String> indexToWord = new HashMap<Integer, String>();
     
-    private HashMap<String, Vector<String>> tokenToEntity = new HashMap<String, Vector<String>>();
-    private HashMap<String, Integer> entityFrequencies;
-    private HashMap<String, String> entityCats = new HashMap<String, String> ();
+    private HashMap<String, String> imageMap = new HashMap<String, String> ();
     
     HashMap<String, Vector<ER>> index = new HashMap<String, Vector<ER>>();
             
     //final static String relationsSrcFolder = "data/relations/";
     //final static String relationsNamesFile = "data/relations.txt";
     final static String relationsNamesFile = "data/relations/data-srclist_entity_prop_out.txt";
+    //final static String relationsNamesFile = "data/relations/test-srclist_entity_prop_out.txt";
     //final static String allRelationsFile = "data/all_relations";
     
     private HashMap<String, Set<String>> entityToType = new HashMap<String, Set<String>>();
@@ -268,6 +269,37 @@ public class Indexer
             String value = tokens[3].toLowerCase();
             String article = tokens[4].toLowerCase();
             String association = "";
+
+            
+            
+            if(property.equals("image") || property.equals("image_name") )
+            {
+                System.out.println("img entity = " + entity);
+                //get image via hash
+                String image = tokens[3].replaceAll("\\s", "_");
+                
+                byte[] bytesOfMessage = image.getBytes("UTF-8");
+
+                MessageDigest md = MessageDigest.getInstance("MD5");
+                md.reset();
+                md.update(image.getBytes());
+                byte[] digest = md.digest();
+                BigInteger bigInt = new BigInteger(1,digest);
+                String hashtext = bigInt.toString(16);
+                // Now we need to zero pad it if you actually want the full 32 chars.
+                while(hashtext.length() < 32 ){
+                  hashtext = "0"+hashtext;
+                }
+                //System.out.println("filename = " + image + "   ,   md5 = " + hashtext);
+                
+                String hashpath = hashtext.substring(0,1) + "/" + hashtext.substring(0,2) + "/";
+                String path = "http://upload.wikimedia.org/wikipedia/commons/thumb/" + hashpath + image + "/200px-" + image;
+                              
+                imageMap.put(entity, path);
+            }
+            
+            
+            property = LinkParser.parseLinkBox(property);
             
             if(entity.equals("united states") && property.equals("president"))
                 System.out.println(line);
@@ -407,7 +439,7 @@ public class Indexer
         {
             String res = er.property + " :|: ";
             res += idToEntity.get(er.nextEntity);
-            //System.out.println("property: " + er.property + ",  entity: " + idToEntity.get(er.nextEntity));
+            System.out.println("property: " + er.property + ",  entity: " + idToEntity.get(er.nextEntity));
             resultsSet.add(res);
         }
         return resultsSet;
@@ -425,163 +457,22 @@ public class Indexer
         return new Vector<String>( typeToentity.get(type) );
     }
     
-    
-    /*
-    public void createIndex()
-    {
-        //final String srcDir = "F:\\wikidumps\\clean\\infoboxes_cities\\";
-        final String srcDir = "F:\\wikidumps\\clean\\infoboxes_movies\\";
-        File src = new File(srcDir);
-        int i=0;
-        for(File file : src.listFiles())
-        {
-            //System.out.println("File " + i + " : " + file.getName());
-            try
-            {
-                String entity = URLDecoder.decode(file.getName(), "utf8");
-                entity = entity.replaceAll("\\,|\\.", "");
-                entityToTokens(entity);
 
-            
-            
-            }
-            catch(UnsupportedEncodingException uee)
-            {
-                System.err.println("Failed to decode: " + uee.getMessage());
-            }
-            
-            
-            i++;
-        }
-        
-    }
-    */
-    public void preprocess(String srcDir, String category)
+    public Set<String> getTypes(String entity)
     {
-        //final String srcDir = "F:\\wikidumps\\clean\\infoboxes_cities\\";
-        //final String srcDir = "F:\\wikidumps\\clean\\infoboxes_movies\\";
-        
-        System.out.println("Loading Index from " + srcDir);
-        
-        File src = new File(srcDir);
-        int i=0;
-        for(File file : src.listFiles())
-        {
-            //System.out.println("File " + i + " : " + file.getName());
-            try
-            {
-                String entity = URLDecoder.decode(file.getName(), "utf8");
-                entity = entity.replaceAll("\\,|\\.", "");
-                entityToTokens(entity);
-
-                entityCats.put(entity, category);
-            
-            }
-            catch(UnsupportedEncodingException uee)
-            {
-                System.err.println("Failed to decode: " + uee.getMessage());
-            }
-            
-            
-            i++;
-        }
-        
-    }
-    
-    private void entityToTokens(String entity)
-    {
-        String strs[] = entity.split("\\s");
-        for(String token: strs)
-        {
-            pairUpTokenEntity(token.toLowerCase(), entity);
-        }
-        
-    }
-    
-    private void pairUpTokenEntity(String token, String entity)
-    {
-        if(tokenToEntity.containsKey(token))
-        {
-            Vector<String> list = tokenToEntity.get(token);
-            list.add(entity);
-        }
-        else
-        {
-            Vector<String> list = new Vector<String>();
-            list.add(entity);
-            tokenToEntity.put(token, list);
-        }
-    }
-    
-    public void processQuery(String query)
-    {
-        String tokens[] = query.split("\\s");
-        Set<String> results = new HashSet<String>(tokenToEntity.get(tokens[0]));
-        for(int i=1;i<tokens.length;i++)
-        {
-            //get this token's entities:
-            Vector<String> entities = tokenToEntity.get(tokens[i]);
-            Set<String> resultsTemp = new HashSet<String>(entities);
-            results.retainAll(resultsTemp);
-            
-        }
-        System.out.println("Entities for token \"" + query + "\": ");
-        
-        //sort results by frequency
-        Vector<String> resultsSorted = new Vector<String>(results);
-        Collections.sort(resultsSorted, new Comparator()
-        {
-
-            @Override
-            public int compare(Object o1, Object o2)
-            {
-                String e1 = (String) o1;
-                String e2 = (String) o2;
-                int e1Count = 0;
-                int e2Count = 0;
-                if(entityFrequencies.containsKey(e1))
-                    e1Count = entityFrequencies.get(e1);
-                if(entityFrequencies.containsKey(e2))
-                    e2Count = entityFrequencies.get(e2);
-                return e1Count - e2Count;
-            }
-        });
-
-        for(String entity : resultsSorted)
-        {
-            System.out.println("\t" + entity);
-        }
-        System.out.println("");
-
+        return entityToType.get(entity);
     }
     
     
-    public void process(String srcDir)
+    public String getImagePath(String enitity)
     {
-        System.out.println("Loading Index from " + srcDir);
-        
-        File src = new File(srcDir);
-        int i=0;
-        for(File file : src.listFiles())
+        if(imageMap.containsKey(enitity))
         {
-            //System.out.println("File " + i + " : " + file.getName());
-            try
-            {
-                String entity = URLDecoder.decode(file.getName(), "utf8");
-                entity = entity.replaceAll("\\,|\\.", "");
-                
-                
-            }
-            catch(UnsupportedEncodingException uee)
-            {
-                System.err.println("Failed to decode: " + uee.getMessage());
-            }
-            
-            
-            i++;
+            return imageMap.get(enitity);
         }
-        
+        return "";
     }
+    
     
     public static void main(String[] args)
     {
@@ -721,8 +612,11 @@ public class Indexer
     {
         String a;
         String b;
-
-        
-        
+    }
+    
+    class Data
+    {
+        String property;
+        String entity;
     }
 }

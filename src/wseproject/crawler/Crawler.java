@@ -52,7 +52,7 @@ public class Crawler
             
             if(ignoreCategory)
             {
-                text = WikiJsonReader.getWikiText(article);
+                text = WikiJsonReader.getWikiText(article, false);
             
                 //System.out.println(text);
                 if(depth < 1)
@@ -115,7 +115,15 @@ public class Crawler
         //startFromSeedList("Lists_of_universities_and_colleges");
         //crawl("Category:Actor_filmographies", -1, false);
         //crawl("Category:Actor_filmographies", 0, false);
-        crawl("List_of_sovereign_states", 0);
+        //crawl("List_of_sovereign_states", 0);
+        //crawl("List_of_sovereign_states_and_dependent_territories_by_continent", 0);
+        //crawl("List_of_sovereign_states_and_dependent_territories_in_Oceania", 1);
+        //crawl("List_of_longest_bridges_in_the_world", 0);
+        //crawl("List_of_tallest_bridges_in_the_world", 0);
+        //crawl("List_of_tallest_buildings_and_structures_in_the_world", 0);
+        //crawl("List_of_tallest_buildings_in_the_world", 0);
+        //crawl("List_of_Nobel_laureates", 0);
+        crawl("List_of_rivers_of_Pakistan", 0);
         
         
     }

@@ -8,9 +8,11 @@ package wseproject.server;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URLDecoder;
+import java.util.Scanner;
 import wseproject.indexer.Indexer;
 import wseproject.query.QueryProcessor;
 import wseproject.query.StructQueryProcessor;
@@ -116,10 +118,39 @@ class QueryHandler implements HttpHandler
         {
             //respondWithMsg(exchange, "Something wrong with the URI!");
         }
-        if (!uriPath.equals("/search"))
+        //if (uriPath.equals("/search"))
         {
             //respondWithMsg(exchange, "Only /search is handled!");
         }
+        //if (uriPath == null || uriPath.equals("") || uriPath.equals("/"))
+        if (uriPath.equals("/knowledge"))
+        {
+            try
+            {
+                File f = new File("data/web/index.html");
+                String content = new Scanner(f).useDelimiter("\\Z").next();
+                respondWithMsg(exchange, content, "text/html");
+            }
+            catch(Exception e)
+            {
+                respondWithMsg(exchange, "Whoops, something went wrong!", "text/html");
+            }
+        }
+        
+        if (uriPath.equals("/jquery"))
+        {
+            try
+            {
+                File f = new File("data/web/jquery-1.7.1.min.js");
+                String content = new Scanner(f).useDelimiter("\\Z").next();
+                respondWithMsg(exchange, content, "text/javascript");
+            }
+            catch(Exception e)
+            {
+                respondWithMsg(exchange, "Whoops, something went wrong!", "text/html");
+            }
+        }
+        
         System.out.println("Query: " + uriQuery);
 
         // Process the CGI arguments.
@@ -139,21 +170,25 @@ class QueryHandler implements HttpHandler
             String order = URLDecoder.decode(cgiArgs._order, "utf-8");
             //System.out.println("sending \"" + query + "\" to QueryProcessor");
             StructQueryProcessor qp = new StructQueryProcessor(entity, property, order);
-            qp.process();
+            String result = qp.process();
+            
+            respondWithMsg(exchange, result, "application/json");
         }
         else
         {
-            respondWithMsg(exchange, "No query is given!");
+            //respondWithMsg(exchange, "No query is given!");
+            //get page they are looking for
         }
         
 
     }
 
-    private void respondWithMsg(HttpExchange exchange, final String message)
+    private void respondWithMsg(HttpExchange exchange, final String message, String type)
             throws IOException
     {
         Headers responseHeaders = exchange.getResponseHeaders();
-        responseHeaders.set("Content-Type", "text/plain");
+        //responseHeaders.set("Content-Type", "text/html");
+        responseHeaders.set("Content-Type", type);
         exchange.sendResponseHeaders(200, 0); // arbitrary number of bytes
         OutputStream responseBody = exchange.getResponseBody();
         responseBody.write(message.getBytes());

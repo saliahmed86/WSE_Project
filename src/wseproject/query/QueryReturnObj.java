@@ -3,14 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package wseproject;
+package wseproject.query;
 
 /**
  *
  * @author Ali Local
  */
-public class Options
+public class QueryReturnObj
 {
-    //public static String cachePath = "data/corpus_cache";
-    public static String cachePath = "data/temp_corpus";
+    int type;
+    Object obj;
+
+    public QueryReturnObj(int type, Object obj)
+    {
+        this.type = type;
+        this.obj = obj;
+    }
+    
+    
 }

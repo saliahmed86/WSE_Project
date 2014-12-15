@@ -5,11 +5,16 @@
  */
 package wseproject.query;
 
+import com.google.gson.Gson;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
 import wseproject.indexer.Indexer;
 import wseproject.indexer.MonotonicModeller;
+import wseproject.indexer.PropertyCombiner;
 import wseproject.nlp.StanfordManager;
 import wseproject.parser.ListTitleParser;
 import wseproject.parser.objects.ListTitleFields;
@@ -80,9 +85,32 @@ public class StructQueryProcessor
             for (String res : resultSet)
             {
                 System.out.println(res);
+                
+                //PropertyCombiner.combine(typeEntity, ll, map11, idToEntity);
             }
+            
+            Vector<QueryResEntity> qreList_img = new Vector<QueryResEntity>();
+            Vector<QueryResEntity> qreList_noimg = new Vector<QueryResEntity>();
+            for(String res: resultSet)
+            {
+                String imgPath = indexer.getImagePath(res);
+                if(imgPath.equals(""))
+                    qreList_noimg.add( new QueryResEntity(res,imgPath , ""));
+                else
+                    qreList_img.add( new QueryResEntity(res,imgPath , ""));
+            }
+            Vector<QueryResEntity> qreList = new Vector<QueryResEntity>(qreList_img);
+            qreList.addAll(qreList_noimg);
+            
+            
+            QueryReturnObj o = new QueryReturnObj(1, qreList);
+            Gson gson = new Gson();
+            
+            String json = gson.toJson(o);
+            return json;
 
-        } else if (entity.trim().isEmpty() && !props.trim().isEmpty())
+        }
+        else if (entity.trim().isEmpty() && !props.trim().isEmpty())
         {
             System.out.println("searching for type = " + props);
             Vector<String> result = indexer.searchType(props);
@@ -95,7 +123,75 @@ public class StructQueryProcessor
 
         } else if (!entity.trim().isEmpty() && props.trim().isEmpty())
         {
-            indexer.searchEntitiy(entity);
+            StringBuilder sb = new StringBuilder();
+            
+            System.out.println("here 1");
+            resultSet = indexer.searchEntitiy(entity);
+            System.out.println("here 2");
+            HashMap<String, Vector<String>> map = new HashMap<String, Vector<String>> ();
+            Vector<String> keyVec = new Vector<String>();
+            System.out.println("here 3");
+            
+            
+            
+            for(String s: resultSet)
+            {
+                //System.out.println(s);
+                String ss[] = s.split("\\:\\|\\:");
+                if(ss.length != 2)
+                    continue;
+                ss[0] = ss[0].replaceAll("\\|", "").replaceAll("_", " ").trim();
+                ss[1] = ss[1].trim();
+                if(!map.containsKey(ss[0]))
+                {
+                    map.put(ss[0], new Vector<String>());
+                    keyVec.add(ss[0]);
+                }
+                System.out.println("here 5");
+                map.get(ss[0]).add(ss[1]);
+            }
+            
+            Collections.sort(keyVec, new Comparator()
+            {
+                @Override
+                public int compare(Object o1, Object o2)
+                {
+                    //return map.get((String) o1).size() - map.get((String) o2).size();
+                    return ((String) o1).compareTo((String) o2);
+                    
+                }
+            
+            });
+            
+            //Vector<Vector<String>> vals = new Vector<Vector<String>> ();
+            Vector<QueryResObj> queryRes = new Vector<QueryResObj>();
+            ImportantTest impTest = new ImportantTest(entity, indexer);
+            
+            for(String s: keyVec)
+            {
+                Vector<String> vals__ = new Vector<String>();
+                
+                //System.out.println(s + " : ");
+                sb.append(s).append(" : ").append("\n");
+                for(String val: map.get(s))
+                {
+                    //System.out.println("\t" + val);
+                    sb.append("\t").append(" : ").append(val).append("\n");
+                    vals__.add(val);
+                }
+                //vals.add(vals__);
+                
+                QueryResObj resObj = new QueryResObj(s, vals__, (impTest.isImportant(s))?1:0 );
+                queryRes.add(resObj);
+            }
+            
+            QueryReturnObj o = new QueryReturnObj(2, queryRes);
+            Gson gson = new Gson();
+            String json = gson.toJson(o);
+            //Now show important ones. which are those? maybe thos with less number of entities
+            
+            //return sb.toString();
+            return json;
         }
 
         //if there is no contraint, then get all entities of type "Type"

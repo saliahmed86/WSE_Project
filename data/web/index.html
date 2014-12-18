@@ -204,7 +204,7 @@ function getData()
 				for(valk in arr)
 				{
 					//oDiv2.append("<li>"+arr[valk].entity+ "</li>");
-					oDiv2.append("<tr><td>"+arr[valk].entity + "</td><td> <img src='" + arr[valk].image + "'/> </td></tr>");
+					oDiv2.append("<tr><td>"+arr[valk].entity + "</td><td> <img src='" + arr[valk].image + "'  onError='imgErr(this)' /> </td></tr>");
 					count++;
 					console.log(arr[valk].entity)
 				}

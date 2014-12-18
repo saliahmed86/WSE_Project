@@ -105,25 +105,10 @@ public class Crawler
     
     public static void main(String[] args)
     {
-        ///////crawl("List of universities in Pakistan", 0);
-        
-        System.out.println("qq");
-        //startFromSeedList("Lists_of_books");
-        //startFromSeedList("Lists_of_rivers");
-        //startFromSeedList("Lists_of_mountains");
-        //startFromSeedList("Lists_of_universities_and_colleges");
-        //startFromSeedList("Lists_of_universities_and_colleges");
-        //crawl("Category:Actor_filmographies", -1, false);
-        //crawl("Category:Actor_filmographies", 0, false);
-        //crawl("List_of_sovereign_states", 0);
-        //crawl("List_of_sovereign_states_and_dependent_territories_by_continent", 0);
-        //crawl("List_of_sovereign_states_and_dependent_territories_in_Oceania", 1);
-        //crawl("List_of_longest_bridges_in_the_world", 0);
-        //crawl("List_of_tallest_bridges_in_the_world", 0);
-        //crawl("List_of_tallest_buildings_and_structures_in_the_world", 0);
-        //crawl("List_of_tallest_buildings_in_the_world", 0);
-        //crawl("List_of_Nobel_laureates", 0);
-        crawl("List_of_rivers_of_Pakistan", 0);
+        startFromSeedList("Lists_of_books");
+        startFromSeedList("Lists_of_rivers");
+        startFromSeedList("Lists_of_mountains");
+        startFromSeedList("Lists_of_universities_and_colleges");
         
         
     }

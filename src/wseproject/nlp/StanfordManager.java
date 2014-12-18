@@ -112,28 +112,5 @@ public class StanfordManager
             printTree(child, d+1);
         }     
     }
-    public static void main(String[] args)
-    {
-        String input = "List of cities and counties of Gyeonggi Province by population";
-        
-        String x = StanfordManager.getLemma("released");
-        System.out.println("x = " + x);
-        
-        if(true) return;
-        Annotation annotation;
-        annotation = new Annotation(input);
-        getPipeline().annotate(annotation);
-        
-        List<CoreMap> sentences = annotation.get(CoreAnnotations.SentencesAnnotation.class);
-        if(sentences != null && sentences.size() > 0)
-        {
-            CoreMap sentence = sentences.get(0);
-        
-            Tree tree = sentence.get(TreeAnnotation.class);
-            //tree = tree.flatten();
-            printTree(tree, 0);
-        }
-        //The children of a Tree annotation is an array of trees.
-        
-    }
+    
 }

@@ -120,29 +120,5 @@ public class WikiInfoboxReader {
         }
         return sb.toString();
     }
-    
-    public static void main(String[] args){
-        try {
-            WikiInfoboxReader reader = new WikiInfoboxReader(); 
-            
-            System.out.println(reader.getByArticleName("Brad Pitt"));
-            System.out.println(reader.getByArticleName("Amazon River"));
-            System.out.println(reader.getByArticleName("Shanghai"));
-            System.out.println(reader.getByArticleName("China"));
-            System.out.println(reader.getByArticleName("Barack Obama"));
-            System.out.println(reader.getByArticleName("Mount Shasta"));
-            System.out.println(reader.getByArticleName("English"));
-            System.out.println(reader.getByArticleName("Law Courts of Brussels"));
-            System.out.println(reader.getByArticleName("Alabama"));
-            String s = reader.getByArticleName("Tianjin Grand Bridge");
-            System.out.println("============");
-            System.out.println(s);
-        } catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
+  
 }

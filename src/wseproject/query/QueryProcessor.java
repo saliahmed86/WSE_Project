@@ -117,20 +117,5 @@ public class QueryProcessor
         //if there is no contraint, then get all entities of type "Type"
         //Indexer.getEntitesForType(type)
     }
-    
-    public static void main(String[] args)
-    {
-        QueryProcessor qp = new QueryProcessor("capital of pakistan");
-        qp.process();
-        
-        //QueryProcessor qp = new QueryProcessor("List of rivers of pakistan and india");
-        //qp.process();
-        
-        //QueryProcessor qp2 = new QueryProcessor("List of mountains of pakistan and china");
-        //qp2.process();
-
-        //QueryProcessor qp3 = new QueryProcessor("List of rivers");
-        //qp3.process();
-    }
         
 }

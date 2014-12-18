@@ -32,7 +32,7 @@ public class ImportantTest
         
         
         if(types.contains("country")){
-            important.add("name");
+            //important.add("name");
             important.add("population");
             important.add("demonym");
             important.add("independence");

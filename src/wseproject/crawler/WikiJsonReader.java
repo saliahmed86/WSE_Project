@@ -247,34 +247,5 @@ public class WikiJsonReader
     }
 
     
-    public static void main(String[] args)
-    {
-        /*
-        WikiJsonReader.getWikiText("List_of_rivers_of_Bhutan");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        WikiJsonReader.getWikiText("List_of_rivers_of_Pakistan");
-        
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        //WikiJsonReader.getWikiText("Chenab_River");
-        */
-        //WikiJsonReader.getWikiText("List_of_museums_and_galleries_in_Berlin");
-        //WikiJsonReader.getWikiText("List_of_rivers_of_Pakistan");
-        //WikiJsonReader.getWikiText("Bill de Blasio");
-        //WikiJsonReader.getWikiText("Lists_of_universities_and_colleges");
-        //WikiJsonReader.getWikiText("Lists_of_rivers");
-        //WikiJsonReader.getWikiText("World's largest municipalities by population");
-        //WikiJsonReader.getWikiText("Lists of neighborhoods by city");
-        String x = WikiJsonReader.getWikiText("Stalky & Co.");
-        
-        //System.out.println("x = " + x);
-        
-        //getWikiCategoryText("Category:Lists_of_companies_by_country") ;
-    }
     
 }

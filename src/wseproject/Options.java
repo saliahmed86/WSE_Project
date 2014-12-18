@@ -12,5 +12,7 @@ package wseproject;
 public class Options
 {
     public static String cachePath = "data/corpus_cache";
-    //public static String cachePath = "data/temp_corpus";
+    public static String indexFilePath = "data/relations/data-srclist_entity_prop_out.txt";
+    public static String monoColFilePath = "data/monotonicCols-data";
+    
 }

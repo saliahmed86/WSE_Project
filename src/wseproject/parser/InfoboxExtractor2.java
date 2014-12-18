@@ -559,33 +559,4 @@ public class InfoboxExtractor2 {
 
     }
     
-    public static void main(String[] args) throws Exception{
-        InfoboxExtractor2 e = new InfoboxExtractor2();
-        String test = "<div style=\"padding-bottom:0.5em;text-align:center;\">\"[[In God We Trust]]\" {{small|(official)}}<ref>{{USC|36|302}} ''National motto''</ref><ref>[[#Simonson|Simonson, 2010]]</ref><ref>[[#God|Dept. of Treasury, 2011]]</ref></div>";
-        //String test = "Incorporated<br/>&nbsp;- Town";
-        System.out.println(e.processContent(test).replace("<[^>]*>", ""));
-        //System.out.println(test.replaceAll("<[^>]*>", ""));
-        
-        //String test = "{{nowrap|[[.us]]{{nbsp|3}}[[.gov]]{{nbsp|3}}[[.mil]]{{nbsp|3}}[[.edu]]}}";
-        //System.out.println(test.replace("{{nbsp|3}}", "3"));
-        
-        String p = "{{nowrap|[[.us]]{{nbsp|3}}[[.gov]]{{nbsp|3}}[[.mil]]{{nbsp|3}}[[.edu]]}}";
-        System.out.println(e.processCurlyBraces(p));
-        
-        String test2 = "[[New York City]]<br />{{small|{{coord|40|43|N|74|00|W|display=inline}}}}";
-        System.out.println(e.isValidContent(test2));
-        
-        /*
-        e.setTranslator("data/tinTranslate");
-        //e.start("data/relations/tin_entity_prop_out.txt", "data/ListOfArticlesWithTables");
-        e.startBatch("data/relations/tin_entity_prop_out.txt", "data/tinTestList");
-        */
-        String source = "New York City";
-        WikiInfoboxReader r = new WikiInfoboxReader();
-        String content = r.getByArticleName(source);
-        System.out.println(content);
-        e.processInfobox(source, content);
-        
-        
-    }
 }

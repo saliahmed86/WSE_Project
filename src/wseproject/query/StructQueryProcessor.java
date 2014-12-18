@@ -14,7 +14,6 @@ import java.util.Set;
 import java.util.Vector;
 import wseproject.indexer.Indexer;
 import wseproject.indexer.MonotonicModeller;
-import wseproject.indexer.PropertyCombiner;
 import wseproject.nlp.StanfordManager;
 import wseproject.parser.ListTitleParser;
 import wseproject.parser.objects.ListTitleFields;
@@ -219,20 +218,5 @@ public class StructQueryProcessor
         return "";
     }
 
-    public static void main(String[] args)
-    {
-        //StructQueryProcessor qp = new StructQueryProcessor("capital of pakistan");
-        //qp.process();
-    
-        //QueryProcessor qp = new QueryProcessor("List of rivers of pakistan and india");
-        //qp.process();
-        //QueryProcessor qp2 = new QueryProcessor("List of mountains of pakistan and china");
-        //qp2.process();
-        //QueryProcessor qp3 = new QueryProcessor("List of rivers");
-        //qp3.process();
-        StructQueryProcessor qp = new StructQueryProcessor("pakistan", "capital", null);
-        qp.process();
-    
-    }
 
 }

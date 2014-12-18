@@ -79,18 +79,5 @@ public class ListParser
         
     }
     
-    public static void main(String[] args)
-    {
-        String article = "List_of_rivers_of_Pakistan";
-        article = "List_of_museums_and_galleries_in_Berlin";
-        
-        Vector<WikiList> list = (new ListParser())
-                                .getLists(article, 
-                                    WikiJsonReader.getWikiText(article));
-        for(WikiList w: list)
-        {
-            w.printList();
-        }
-    }
     
 }

@@ -167,53 +167,5 @@ public class ListTitleParser
         
     }
 
-    
-    
-    
-    
-    public static void main(String[] args)
-    {
-        String title = "List of cities and towns in Pakistan and India by poplation";
-        title = "List of ciities and towns by ss";
-        //title = "List of ciities and towns";
-        title = "List of villages, cities and towns of pakistan and india by population";
-        title = "List of companies of Zimbabwe";
-        title = "List of books of religious apologetics";
-        //title = "List/NN of/IN books/NNS about/IN the/DT War/NN of/IN 1812/CD";
-        title = "List of works by Pierre Schaeffer";
-        //title = "List/NN of/IN works/NNS by/IN Pierre/NNP Schaeffer/NNP";
-        title = "List of the longest rivers in the world";
-        
-        Vector<String> V = StanfordManager.getPOSTags(title);
-        String s = "";
-        for(String v: V)
-            s += v + " ";
-        s = s.trim();
-        //System.out.println(s);
-        ListTitleFields f = (new ListTitleParser(s)).parseTitle();
-
-        System.out.println("type = " + f.getType());
-        System.out.println("constraint = " + f.getConstraint());
-        System.out.println("order = " + f.getOrder());
-        System.out.println("jjs  = " + f.getJjs());
-        
-        
-        title = "List of countries by population";
-        
-        V = StanfordManager.getPOSTags(title);
-        s = "";
-        for(String v: V)
-            s += v + " ";
-        s = s.trim();
-        System.out.println(s);
-        f = (new ListTitleParser(s)).parseTitle();
-
-        System.out.println("");
-        System.out.println("type = " + f.getType());
-        System.out.println("constraint = " + f.getConstraint());
-        System.out.println("order = " + f.getOrder());
-        System.out.println("jjs  = " + f.getJjs());
-       
-    }
             
 }

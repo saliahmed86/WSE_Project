@@ -26,7 +26,7 @@ public class ListOfListsDownloader
 {
 
     private Set<String> visited = new HashSet<String>();
-    private static final String listArticleDestFolder = "data\\listArticleCollection\\";
+    private static final String listArticleDestFolder = "data/listArticleCollection/";
     
     public ListOfListsDownloader()
     {
@@ -88,49 +88,5 @@ public class ListOfListsDownloader
         }
     }
     
-    public static void downloadAndSaveListsText(String srcfile)
-    {
-        //get lists from src file, download and save their text
-        try
-        {
-            BufferedReader br = new BufferedReader(new FileReader(new File(srcfile)));
-            String listArticle;
-            while((listArticle = br.readLine()) != null)
-            {
-                try
-                {
-                    listArticle = LinkParser.parseLinkBox(listArticle); //src has varied data
-                    String listArticle_ = listArticle.trim().replaceAll(" ", "_");
-                    String text = WikiJsonReader.getWikiText(listArticle);
-                    BufferedWriter bw = new BufferedWriter(new FileWriter(new File(listArticleDestFolder + listArticle_)));
-                    bw.write(text);
-                    bw.close();
-                    
-                }
-                catch(Exception e)
-                {
-                    System.out.println("Error: " + e.getMessage());
-                }
-            }
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
-    
-    public static void main(String[] args)
-    {
-        ListOfListsDownloader lldl = new ListOfListsDownloader();
-        //lldl.downloadLists("Lists_of_universities_and_colleges");
-        //lldl.downloadLists("Category:Lists_of_companies_by_country");
-        //lldl.downloadLists("Lists_of_rivers");
-        //lldl.downloadLists("Lists_of_cities");
-        lldl.downloadLists("Lists_of_universities_and_colleges");
-        //lldl.downloadLists("Lists_of_books");
-        //lldl.downloadLists("Lists_of_mountains");
-        
-        //String srcfile = "data\\";
-        //downloadAndSaveListsText(srcfile);
-    }
+   
 }

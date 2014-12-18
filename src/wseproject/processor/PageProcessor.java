@@ -431,9 +431,5 @@ public class PageProcessor
         results.append(tokens[i]);
         return results.toString();
     }
-    
-    public static void main(String[] args)
-    {
 
-    }
 }
